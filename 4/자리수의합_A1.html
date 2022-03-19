@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n, arr){
+                let answer,max = Number.MIN_SAFE_INTEGER;
+            for(let x of arr){
+                    let sum=0,tmp =x;
+                    while(tmp){  //tmp = 0 이 되면 멈춤
+                    sum+=(tmp%10);  //각 자리수 추출
+                    tmp=Math.floor(tmp/10); //다음 자리수 추출을 위한 몫 값
+                }
+                console.log("sum="+sum);
+                if(sum>max){
+                    max = sum;
+                    answer=x;
+                }
+                else if(sum===max){
+                    if(x>answer) answer =x ;
+                }
+            }
+                return answer;
+            }
+            
+            let arr=[137, 460, 603, 40, 521, 128, 123];
+            console.log(solution(7, arr));
+        </script>
+    </body>
+</html>
+
+
+
+
+
