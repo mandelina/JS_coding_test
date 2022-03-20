@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            //소수이면 true 리턴
+            function isPrime(num){
+                if (num===1) return false;
+                for(let i =2 ; i<parseInt(Math.sqrt(num))  ; i++){
+                    if(num%i==0)  return false;
+                }
+                return true;
+            }
+            //내장 함수로 구현하기
+            function solution(arr){
+                let answer=[];
+                for(let x of arr){
+                    let res=Number(x.toString().split('').reverse().join(''));
+                    if(isPrime(res)) answer.push(res);
+                }
+                return answer;
+            }
+       
+    
+            let arr=[32, 55, 62, 20, 250, 370, 200, 30, 100];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
+
+<!--
+    직접구현하기
+         function solution(arr){
+                let answer=[];
+                for(let x of arr){
+                    let res=0; //reverse 결과를 저장함
+                    while(x){
+                        let t = x%10; // 마지막자리의수 추출 
+                        res = res*10+t; //reverse 하는 과정
+                        x = parseInt(x/10) //몫 (마지막의자리 제외한 그 앞의 숫자)
+                    }
+                    if(isPrime(res)) answer.push(res);
+                }
+
+                return answer;
+            }
+
+-->
+
