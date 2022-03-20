@@ -7,7 +7,7 @@
         <script>
             function solution(test){
                 //i 멘토 j 멘티
-                let answer = 0;
+                let answer = 0, tmp=[];
                 m = test.length;  //행개수
                 n= test[0].length;  //열개수
                 for(let i=1;i<=n;i++){      //1번학생부터 n번학생까지
@@ -22,9 +22,13 @@
                             }
                             if(pi<pj) cnt++;  //테스트통과갯수
                         }
-                        if(cnt===m) answer++; //m과 테스트통과갯수가 같아야 짝지을수 있음
+                        if(cnt===m) {
+                            tmp.push([i,j]);
+                            answer++;
+                         } //m과 테스트통과갯수가 같아야 짝지을수 있음
                     }
                 }
+                console.log(tmp)
                 return answer;
             }
             
