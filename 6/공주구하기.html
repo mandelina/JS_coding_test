@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      function solution(n, k) {
+        let answer;
+        let queue = Array.from({ length: n }, (v, i) => i + 1);
+        //배열 초기화 (유사배열객체)
+        // v: 배열값  i :인덱스
+        console.log(queue);
+
+        while (queue.length > 0) {
+          for (let i = 1; i < k; i++) {
+            queue.push(queue.shift()); // 시프트된 값을 다시 푸시 즉, 맨 뒤로보낸다
+          }
+          queue.shift(); //k을 말한 왕자는 그냥 없앰
+
+          if (queue.length === 1) {
+            //왕자가 한명남으면
+            answer = queue.shift(); //그 왕자가 답
+          }
+        }
+
+        return answer;
+      }
+      console.log(solution(8, 3));
+    </script>
+  </body>
+</html>
