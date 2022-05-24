@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      function solution(need, plan) {
+        let answer = "YES";
+        let queue = need.split("");
+        for (let x of plan) {
+          if (queue.includes(x)) {
+            if (x !== queue.shift()) {
+              //과목이 순서대로 나오지 않으면
+              console.log(queue);
+              return "No";
+            }
+          }
+        }
+        if (queue.length > 0) {
+          //순서는 맞지만 필수과목을 다 듣지 않은경우
+          return "No";
+        }
+        console.log(queue); //모두 비교했으면 큐가 비어있고 , YES 리턴
+        return answer;
+      }
+      let a = "CBAE";
+      let b = "CBDGAE";
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
