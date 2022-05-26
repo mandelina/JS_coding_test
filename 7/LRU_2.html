@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      //내장함수 사용
+
+      //size : 캐시의 크기 , arr : 작업번호순
+      function solution(size, arr) {
+        let answer = Array.from({ length: size }, () => 0);
+        arr.forEach((x) => {
+          let pos = -1;
+          for (let i = 0; i < size; i++) {
+            if (x === answer[i]) {
+              pos = i; //heat면 index값 저장해둠
+            }
+          }
+          if (pos === -1) {
+            //miss라면 (캐시 안에 작업번호가 없으면)
+            answer.unshift(x);
+            if (answer.length > size) {
+              answer.pop();
+            }
+          } else {
+            //heat라면 (작업번호가 있다면)
+            answer.splice(pos, 1); //그번호를 지우고
+            answer.unshift(x); //맨앞으로 넣어줌
+          }
+          answer[0] = x;
+        });
+
+        return answer;
+      }
+
+      let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+      console.log(solution(5, arr));
+    </script>
+  </body>
+</html>
