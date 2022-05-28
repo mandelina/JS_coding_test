@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      //e(간시간)를 만나면 감소, s(온시간)를 만나면 증가시킨다!
+      // e와 s가 같다면 e를 먼저 세준다 .  (그래야  e에서끝났을때 답이 맞음)
+
+      function solution(times) {
+        let answer = Number.MIN_SAFE_INTEGER;
+        let T_line = [];
+        for (let x of times) {
+          T_line.push([x[0], "s"]); //시작시간
+          T_line.push([x[1], "e"]); //종료시간
+        }
+        T_line.sort((a, b) => {
+          if (a[0] == b[0]) {
+            //온시간이 같으면
+            return a[1].charCodeAt() - b[1].charCodeAt(); //아스키 코드상 e를 먼저 정렬하도록  한다.
+          } else {
+            return a[0] - b[0];
+          }
+        });
+
+        let cnt = 0;
+        for (let x of T_line) {
+          if (x[1] === "s") cnt++;
+          else cnt--;
+          answer = Math.max(answer, cnt);
+        }
+        return answer;
+      }
+
+      let arr = [
+        [14, 18],
+        [12, 15],
+        [15, 20],
+        [20, 30],
+        [5, 15],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
