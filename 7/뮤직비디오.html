@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      //N개의 곡 , M개의 DVD
+      //결정알고리즘
+
+      //답이 유효한지 확인하는 함수 (중요)
+      function count(songs, capacity) {
+        let cnt = 1,
+          sum = 0; //장수 , 누적용량
+        for (let x of songs) {
+          if (sum + x > capacity) {
+            //저장용량이 넘어가면
+            cnt++;
+            sum = x;
+          } else {
+            //저장용량이 남을땐 누적
+            sum += x;
+          }
+        }
+        return cnt; //필요한 장수
+      }
+
+      function solution(m, songs) {
+        let answer;
+        let lt = Math.max(...songs); //배열을 전개연산자로 풀어서 보내줘야 나옴
+        let rt = songs.reduce((a, b) => a + b, 0); //전체 합
+        while (lt <= rt) {
+          let mid = parseInt((rt + lt) / 2);
+          if (count(songs, mid) <= m) {
+            answer = mid;
+            rt = mid - 1;
+          } else {
+            //용량이 적은경우
+            lt = mid + 1;
+          }
+        }
+
+        while (lt <= lt) return answer;
+      }
+
+      let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      console.log(solution(3, arr));
+    </script>
+  </body>
+</html>
