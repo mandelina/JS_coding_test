@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마구간정하기</title>
+  </head>
+  <body>
+    <script>
+      function count(stable, dist) {
+        let cnt = 1,
+          ep = stable[0]; // 한마리는 무조건 배치 , endposition : 제일왼쪽
+        for (let i = 0; i < stable.length; i++) {
+          if (stable[i] - ep >= dist) {
+            //두 말사이의 거리가 dist보다 같거나 커야 마구간에 배치할 수 있다.
+            cnt++;
+            ep = stable[i]; //배치한 말 위치 업데이트
+          }
+        }
+        return cnt;
+      }
+
+      function solution(c, stable) {
+        let answer;
+        stable.sort((a, b) => a - b);
+        let lt = 1;
+        let rt = stable[stable.length - 1];
+
+        while (lt < rt) {
+          let mid = parseInt((lt + rt) / 2);
+          if (count(stable, mid) >= c) {
+            //c마리 이상이여야 답
+            answer = mid;
+            lt = mid + 1; //큰쪽으로
+          } else {
+            //mid 거리로 c마리를 배치할 수 없으면
+            rt = mid - 1;
+          }
+        }
+        return answer;
+      }
+
+      let arr = [1, 2, 8, 4, 9];
+      console.log(solution(3, arr));
+    </script>
+  </body>
+</html>
