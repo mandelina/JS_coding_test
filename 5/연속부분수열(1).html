@@ -13,10 +13,14 @@
         // 오른쪽으로 계속 더해가다가 m값보다 커지면 lt값이 앞에서부터 빼면서 m값과 같아지는지 본다. m과 같아지면 answer++
         for (let rt = 0; rt < arr.length; rt++) {
           sum += arr[rt];
-          if (sum === m) answer++;
+          if (sum === m) {
+            answer++;
+          }
           while (sum >= m) {
             sum -= arr[lt++];
-            if (sum === m) answer++;
+            if (sum === m) {
+              answer++;
+            }
           }
         }
         return answer;

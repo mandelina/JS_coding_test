@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = ""; //숫자를 스트링형태로 더하기 위해
+        function DFS(n) {
+          if (n === 0) {
+            return;
+          } else {
+            console.log(n % 2);
+            DFS(parseInt(n / 2));
+            answer += String(n % 2);
+          }
+        }
+        DFS(n);
+        return answer;
+      }
+      console.log(solution(15));
+    </script>
+  </body>
+</html>
