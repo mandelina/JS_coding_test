@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = [];
+        let ch = Array.from({ length: n + 1 }, () => 0); //ch 0으로 초기화
+
+        function DFS(v) {
+          //n+1 일경우, 즉 다 완성되었을때 출력
+          if (v === n + 1) {
+            let tmp = "";
+            for (let i = 1; i <= n; i++) {
+              if (ch[i] === 1) {
+                //1인것만 출력한다.
+                tmp += i + " ";
+              }
+            }
+            if (tmp.length > 0) {
+              // 공집합은 안들어 가게 처리
+
+              answer.push(tmp.trim()); //trim하는이유 : 양옆 뛰어쓰기 없애기 위함
+            }
+          } else {
+            //두갈래로 DFS가 뻗는다 . (이진트리)
+            //그 두갈래는 숫자가 있는경우, 없는경우로 나뉜다.
+            ch[v] = 1; // 포함시키면 1
+            DFS(v + 1);
+            ch[v] = 0; //포함안시키면 0
+            DFS(v + 1);
+          }
+        }
+        DFS(1);
+        return answer;
+      }
+
+      console.log(solution(3));
+    </script>
+  </body>
+</html>
