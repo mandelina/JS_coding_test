@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      function solution(m, ps, pt) {
+        let answer = Number.MIN_SAFE_INTEGER;
+        let n = ps.length;
+        function DFS(L, sum, time) {
+          if (time > m) return;
+          if (n === L) {
+            //l:레벨
+            answer = Math.max(answer, sum);
+          } else {
+            DFS(L + 1, sum + ps[L], time + pt[L]); //푼다
+            DFS(L + 1, sum, time); //풀지않는다
+          }
+        }
+        DFS(0, 0, 0);
+        return answer;
+      }
+      let ps = [10, 25, 15, 6, 7]; //점수
+      let pt = [5, 12, 8, 3, 4]; //시간
+      console.log(solution(20, ps, pt)); //최대점수 구하기
+    </script>
+  </body>
+</html>
