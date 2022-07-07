@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+      //n^m개수 중복순열
+      function solution(n, m){
+                let answer=[];
+                let tmp=Array.from({length:m}, ()=>0); //m개의 원소갯수, 0로 초기화
+                function DFS(L){
+                    if(L===m){
+                        answer.push(tmp.slice());
+                    }
+                    else{
+                        for(let i=1; i<=n; i++){
+                            tmp[L]=i;
+                            DFS(L+1);
+                        }
+                    }   
+                }
+                
+                DFS(0);
+                return answer;
+            }
+
+            console.log(solution(3, 2));
+
+    </script>
+</body>
+</html>
