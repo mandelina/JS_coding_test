@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>순열구하기</title>
+</head>
+<body>
+    <script>
+      //n P m : 순열
+      function solution(m,arr){
+        let answer = [];
+        n =arr.length;
+        let ch = Array.from({length:n},()=>0)
+        let tmp = Array.from({length:m},()=>0)
+        function DFS(L){
+          if (L ===m){
+            //배열을 한번자름(값을 answer에저장하고 다른수가 입력되게끔)
+            answer.push(tmp.slice());
+          }
+          else{
+            for(let i =0;i<n;i++){
+              if(ch[i]===0) //0이면 아직 사용하지않았으니 사용가능
+              {
+                ch[i]=1;
+                tmp[L]=arr[i];
+                DFS(L+1);
+                ch[i]=0 //다음 레벨을 넘어갈땐 다시 초기화해주어야함
+              }
+            }
+          }
+        }
+        DFS(0);
+        return answer;
+      }
+      let arr=[3,6,9];
+      console.log(solution(2,arr));
+    </script>
+</body>
+</html>
