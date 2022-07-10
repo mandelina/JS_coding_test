@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조합수</title>
+</head>
+<body>
+  <script>
+    //nCr을 재귀함수로 구하기
+    function solution(n, r){         
+        let answer;
+        //행 3, 열5인 배열생성
+        //최대 n값이 33이므로 넉넉잡아 35로 초기화
+        let dy = Array.from(Array(35),()=>Array(35).fill(0))
+        console.log(dy);
+        function DFS(n,r){
+          if(dy[n][r]>0) return dy[n][r] //메모이제이션, dy[n][r]에 값이 있으면 리턴!
+          if (r===0 || n===r) return 1;
+          else{
+           return dy[n][r] = DFS(n-1,r-1)+DFS(n-1,r);
+          }
+        }
+        answer = DFS(n,r);
+        return answer;
+    }
+    console.log(solution(33, 19));
+</script>
+</body>
+</html>
