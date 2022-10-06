@@ -23,6 +23,8 @@
                 board[nx][ny] === 0
               ) {
                 // 통로여야만 갈 수 있음
+                console.log(board[nx][ny]);
+
                 board[nx][ny] = 1;
                 DFS(nx, ny);
                 board[nx][ny] = 0;
