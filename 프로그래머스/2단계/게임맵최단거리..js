@@ -14,7 +14,7 @@ function solution(maps) {
     let size = queue.length;
 
     for (let i = 0; i < size; i++) {
-      let [x, y] = queue.shift();
+      let [x, y] = queue.shift(); // 처음은 [0,0으로 시작]
 
       for (let j = 0; j < 4; j++) {
         let nx = x + dx[j];
@@ -22,6 +22,7 @@ function solution(maps) {
 
         if (nx >= 0 && nx < n && ny >= 0 && ny < m && visited[nx][ny] === 1) {
           if (nx == n - 1 && ny == m - 1) {
+            // 도착지점이면
             return ++answer;
           }
           queue.push([nx, ny]);

@@ -1,3 +1,6 @@
+// 직접 구하면서 점화식 만들기
+// 점화식은 피보나치 수열
+
 function solution(n) {
   return fibonacci(n);
 }

@@ -16,3 +16,13 @@ function greatestCommonDivisor(a, b) {
   }
   return a;
 }
+
+// 유클리드 호제법 사용
+function getGcd(a, b) {
+  if (b === 0) return a;
+  return getGcd(b, a % b);
+}
+
+function solution(arr) {
+  return arr.reduce((a, b) => (a * b) / getGcd(a, b));
+}
