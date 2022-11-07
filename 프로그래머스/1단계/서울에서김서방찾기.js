@@ -3,3 +3,9 @@ function solution(seoul) {
     if (seoul[i] === "Kim") return "김서방은 " + i + "에 있다";
   }
 }
+
+// 다른풀이
+function findKim(seoul) {
+  var idx = seoul.indexOf("Kim");
+  return "김서방은 " + idx + "에 있다";
+}
